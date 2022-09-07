@@ -88,16 +88,17 @@ for student_count = 1:num_names % Should be num_names
 end
 
 %% Copy necessary files to each students folder
-[~,m] = size(files_to_copy);
-for j = 1:num_names
-    for i = 1:m
-        f = files_to_copy{i};
-        source = [solution_dir,'/',f];
-        destination = [copy_to,'/',student_names{j},'/',f];
-        copyfile(source,destination);
+if files_to_copy{1} ~= 0 % Checks if no files are selected
+    [~,m] = size(files_to_copy);
+    for j = 1:num_names
+        for i = 1:m
+            f = files_to_copy{i};
+            source = [solution_dir,'/',f];
+            destination = [copy_to,'/',student_names{j},'/',f];
+            copyfile(source,destination);
+        end
     end
 end
-
 
 
 %% Write an xls file for grading
