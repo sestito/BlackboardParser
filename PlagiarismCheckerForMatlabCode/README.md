@@ -4,6 +4,8 @@
 
 To check code, run this file and select the folder with all of the code you wish to compare.
 
+I did not write this code. See code comments for details.
+
 
 
 ## DivideFileTypes.m
