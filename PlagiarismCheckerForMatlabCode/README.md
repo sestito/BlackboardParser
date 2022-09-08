@@ -4,7 +4,8 @@
 
 To check code, run this file and select the folder with all of the code you wish to compare.
 
-I did not write this code. See code comments for details.
+I did not write this code. The code is from https://www.mathworks.com/matlabcentral/fileexchange/29781-mfilecompare
+ and modified by Dan White. See code comments for details.
 
 
 
