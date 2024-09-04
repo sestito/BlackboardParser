@@ -81,8 +81,7 @@ for student_count = 1:num_names % Should be num_names
             if length(name_split) > 1
                 first = name_split{1};
                 name_split_again = split(name_split{end}, '.');
-                last = name_split_again{end};
-                name = strcat(first, '.', last);
+                last = 
             end
 
             source = [directory_files_to_grade, '/', f];
