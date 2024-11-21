@@ -96,3 +96,6 @@ for file in all_files:
         f = open(file_name, "w")
         f.write(file_text_new)
         f.close()
+
+    else:
+        print(file)
