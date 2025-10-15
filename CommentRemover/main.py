@@ -20,6 +20,7 @@ if not os.path.isdir(stripped_path):
 else:
     raise Exception("Folder " + stripped_directory + " already exists!")
 
+print(len(all_files), "files found")
 
 for file in all_files:
     
@@ -49,47 +50,49 @@ for file in all_files:
         file_path = os.path.join(working_directory, file)
         f = open(file_path, "r")
         
-        
+        try:
 
-        file_text_new = ""
-        file_text_new += comment + " Name: " + file.split("_")[0]
-        file_text_new += "\n\n"
+            file_text_new = ""
+            file_text_new += comment + " Name: " + file.split("_")[0]
+            file_text_new += "\n\n"
 
-        block_comment = False
-        for line in f:
-            line_to_add = ""
-            # Check for block comment
-            if block_comment:
-                if block_comment_end in line:
-                    block_comment = False
+            block_comment = False
+            for line in f:
+                line_to_add = ""
+                # Check for block comment
+                if block_comment:
+                    if block_comment_end in line:
+                        block_comment = False
 
-            else:
-                if block_comment_start in line:
-                    split_text = line.split(block_comment_start)
-                    if len(split_text) > 2:
-                        raise Exception("More than one block comment in a line in " + file)
-                    
-                    if block_comment_end in split_text[1]:
-                        pass
-                    else:
-                        block_comment = True
-
-                    line_to_add += split_text[0]
-                    if line_to_add != "":
-                        line_to_add += '\n'
-                
-                # TODO: Add in something to catch % in strings
-                elif comment in line:
-                    split_text = line.split(comment)
-                    line_to_add += split_text[0]
-                    if line_to_add != "":
-                        line_to_add += '\n'
-                
                 else:
-                    line_to_add += line
-                
-            file_text_new += line_to_add
+                    if block_comment_start in line:
+                        split_text = line.split(block_comment_start)
+                        if len(split_text) > 2:
+                            raise Exception("More than one block comment in a line in " + file)
+                        
+                        if block_comment_end in split_text[1]:
+                            pass
+                        else:
+                            block_comment = True
 
+                        line_to_add += split_text[0]
+                        if line_to_add != "":
+                            line_to_add += '\n'
+                    
+                    # TODO: Add in something to catch % in strings
+                    elif comment in line:
+                        split_text = line.split(comment)
+                        line_to_add += split_text[0]
+                        if line_to_add != "":
+                            line_to_add += '\n'
+                    
+                    else:
+                        line_to_add += line
+                    
+                file_text_new += line_to_add
+
+        except:
+            print("Error parsing " + file)
         f.close()
 
         file_name = os.path.join(stripped_path, file)
